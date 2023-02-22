@@ -11,8 +11,10 @@ export async function getStaticProps() {
   const { data } = await client.query({
     query: gql`
       query Countries {
-        name
-        code
+        countries {
+          name
+          code
+        }
       }
     `,
   });
