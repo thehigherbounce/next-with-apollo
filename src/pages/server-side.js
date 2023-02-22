@@ -7,8 +7,8 @@ import client from 'apollo-client'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export async function getStaticProps() {
-  const { data } = await client.query({
+export async function getServerSideProps() {
+  const {data} = await client.query({
     query: gql`
       query Countries {
         countries {
@@ -18,15 +18,14 @@ export async function getStaticProps() {
       }
     `,
   });
-
   return {
     props: {
       countries: data.countries.slice(0, 4),
-    }
-  }
+    },
+  };
 }
 
-export default function Home({ countries }) {
+export default function ServerSide({ countries }) {
   return (
     <>
       <Head>
